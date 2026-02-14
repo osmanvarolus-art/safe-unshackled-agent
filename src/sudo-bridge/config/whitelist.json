@@ -1,0 +1,93 @@
+{
+  "systemctl": {
+    "description": "System service management",
+    "allowed_actions": [
+      "start",
+      "stop",
+      "restart",
+      "reload",
+      "status",
+      "enable",
+      "disable"
+    ],
+    "allowed_targets": [
+      "nginx",
+      "redis",
+      "postgres",
+      "mysql",
+      "openslaw",
+      "openclaw",
+      "docker",
+      "podman",
+      "ssh",
+      "sshd",
+      "auditd"
+    ],
+    "audit": true,
+    "require_reason": false,
+    "notes": "Agent can control whitelisted services safely"
+  },
+  "pacman": {
+    "description": "Package manager operations (Arch Linux)",
+    "allowed_actions": [
+      "-S",
+      "-Syu",
+      "--sync",
+      "--refresh",
+      "-U"
+    ],
+    "allowed_packages": [
+      "nodejs",
+      "python3",
+      "git",
+      "curl",
+      "wget",
+      "jq",
+      "tmux",
+      "redis",
+      "postgresql",
+      "docker",
+      "podman",
+      "nftables",
+      "audit"
+    ],
+    "audit": true,
+    "require_reason": true,
+    "notes": "Agent can install whitelisted packages only"
+  },
+  "mount": {
+    "description": "Filesystem mount operations",
+    "allowed_actions": [],
+    "deny_reason": "Mount operations are restricted",
+    "audit": true,
+    "notes": "BLOCKED: Mount operations pose security risk"
+  },
+  "chattr": {
+    "description": "File attribute modification",
+    "allowed_actions": [],
+    "deny_reason": "Cannot modify file attributes (immutable files are protected)",
+    "audit": true,
+    "notes": "BLOCKED: Prevents removal of immutable protections"
+  },
+  "rm": {
+    "description": "File deletion",
+    "allowed_actions": [],
+    "deny_reason": "Cannot use rm via sudo-bridge",
+    "audit": true,
+    "notes": "BLOCKED: Use git for config rollback instead"
+  },
+  "sudo": {
+    "description": "Privilege escalation nesting",
+    "allowed_actions": [],
+    "deny_reason": "Cannot nest sudo-bridge calls",
+    "audit": true,
+    "notes": "BLOCKED: Prevents privilege escalation loops"
+  },
+  "_metadata": {
+    "version": "1.0",
+    "created": "2026-02-15",
+    "description": "Whitelist for Scoped Sudo Bridge daemon",
+    "philosophy": "Principle of least privilege: only allow operations that are necessary",
+    "add_new_entries": "Edit this file and restart sudo-bridge daemon. Changes are hot-loaded."
+  }
+}

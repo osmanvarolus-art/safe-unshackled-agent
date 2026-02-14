@@ -1,0 +1,36 @@
+[Unit]
+Description=Scoped Sudo Bridge Daemon
+Documentation=file:///opt/uncaged/docs/sudo-bridge.md
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+
+# Daemon script
+ExecStart=/opt/uncaged/sudo-bridge-daemon.sh
+
+# Security hardening
+NoNewPrivileges=false
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=yes
+
+# Restart policy
+Restart=on-failure
+RestartSec=5
+StartLimitBurst=5
+StartLimitInterval=60s
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sudo-bridge
+
+# Resource limits
+CPUQuota=10%
+MemoryLimit=256M
+
+[Install]
+WantedBy=multi-user.target

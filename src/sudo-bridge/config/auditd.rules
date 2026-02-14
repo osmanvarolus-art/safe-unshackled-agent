@@ -1,0 +1,20 @@
+# Auditd Rules for Scoped Sudo Bridge Monitoring
+# These rules monitor all privilege escalation via sudo-bridge
+
+# Monitor sudo-bridge daemon execution
+-w /opt/uncaged/sudo-bridge-daemon.sh -p x -k sudo-bridge-exec
+
+# Monitor sudo-bridge wrapper execution
+-w /opt/uncaged/sudo-bridge.sh -p x -k sudo-bridge-exec
+
+# Monitor whitelist modifications (if attacker tries to modify)
+-w /opt/uncaged/config/whitelist.json -p wa -k sudo-bridge-config
+
+# Monitor sudo-bridge log modifications (if attacker tries to hide tracks)
+-w /opt/uncaged/config/sudo-bridge.log -p wa -k sudo-bridge-log
+
+# Monitor systemctl via sudo-bridge
+# (These events will be tagged with key="sudo-bridge")
+
+# Note: The actual execution will be logged by the daemon itself,
+# but auditd provides kernel-level tamper-proof logging
