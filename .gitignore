@@ -1,0 +1,58 @@
+# Secrets and sensitive files
+.env
+*.key
+*.pem
+secrets/
+credentials/
+.aws/
+.ssh/
+
+# Build artifacts
+*.o
+*.a
+*.so
+dist/
+build/
+
+# Logs
+*.log
+logs/
+*.out
+
+# OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Test artifacts
+coverage/
+.nyc_output/
+
+# Misc
+.DS_Store
+Thumbs.db
