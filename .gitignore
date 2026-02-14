@@ -1,58 +1,65 @@
-# Secrets and sensitive files
-.env
+# Secrets and credentials
 *.key
 *.pem
-secrets/
+*.crt
+*.env
+.env.*
 credentials/
-.aws/
-.ssh/
+secrets/
+*.token
 
-# Build artifacts
-*.o
-*.a
-*.so
-dist/
-build/
+# Snapshots (too large for git)
+*.snapshots/
+snapshots/
+.snapshots/
 
 # Logs
 *.log
 logs/
-*.out
+tmp/
+*.tmp
 
-# OS
-.DS_Store
+# User-specific configs
+.openclaw/
+.mcp-memory/
+.secrets-canary/
+
+# Build artifacts
+*.o
+*.so
+*.a
+dist/
+build/
+target/
+
+# Editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# Node
-node_modules/
-npm-debug.log*
-package-lock.json
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-.venv/
-env/
-
-# IDE
-.vscode/
-.idea/
-*.sublime-*
-
-# Temporary files
-tmp/
-temp/
-*.tmp
-
-# Test artifacts
-coverage/
-.nyc_output/
-
-# Misc
 .DS_Store
-Thumbs.db
+
+# Test outputs
+test-results/
+coverage/
+
+# Node modules (if we add any tooling)
+node_modules/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Systemd generated files
+*.service.d/runtime/
+
+# Audit logs (sensitive)
+/var/log/audit/
+audit.log
+
+# Canary alerts (may contain sensitive data)
+*-canary-alert.md
+*-watchdog-alert.md
